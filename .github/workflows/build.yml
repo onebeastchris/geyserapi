@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Get Release Info
         id: release-info
-        uses: GeyserMC/actions/previous-release@master
+        uses: GeyserMC/actions/previous-release@feature/globs
         with:
           data: ${{ vars.RELEASEACTION_PREVRELEASE }}
 
@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew build
 
       - name: Archive Artifacts
-        uses: GeyserMC/actions/upload-multi-artifact@master
+        uses: GeyserMC/actions/upload-multi-artifact@feature/globs
         if: success()
         with:
           artifacts: |
@@ -43,7 +43,7 @@ jobs:
 
       - name: Get Release Metadata
         if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
-        uses: GeyserMC/actions/release@master
+        uses: GeyserMC/actions/release@feature/globs
         id: metadata
         with:
           appID: ${{ secrets.RELEASE_APP_ID }}
