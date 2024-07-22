@@ -32,7 +32,7 @@ jobs:
         if: success()
         with:
           artifacts: |
-            base/libs/base-*.jar
+            base/build/libs/base-*.jar
 
       - name: Publish to Maven Repository
         if: ${{ success() && github.repository == 'GeyserMC/api' && github.ref_name == 'master' }}
@@ -49,7 +49,7 @@ jobs:
           appID: ${{ secrets.RELEASE_APP_ID }}
           appPrivateKey: ${{ secrets.RELEASE_APP_PK }}
           files: |
-            base:base/libs/base-*.jar
+            base:base/build/libs/base-*.jar
           releaseEnabled: false
           saveMetadata: false
           releaseProject: 'base'
