@@ -32,7 +32,7 @@ jobs:
         if: success()
         with:
           artifacts: |
-            base/build/libs/base-*.jar
+            base:base/build/libs/base-*.jar
 
       - name: Publish to Maven Repository
         if: ${{ success() && github.repository == 'GeyserMC/api' && github.ref_name == 'master' }}
