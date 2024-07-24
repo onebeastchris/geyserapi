@@ -27,19 +27,19 @@ jobs:
       - name: Build Base API
         run: ./gradlew build
 
-      - name: Archive Artifacts
-        uses: GeyserMC/actions/upload-multi-artifact@feature/globs
-        if: success()
-        with:
-          artifacts: |
-            base-api:base/build/libs/base-*.jar
-
       - name: Publish to Maven Repository
         if: ${{ success() && github.repository == 'GeyserMC/api' && github.ref_name == 'master' }}
         run: ./gradlew publish
         env:
           ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
           ORG_GRADLE_PROJECT_geysermcPassword: ${{ secrets.DEPLOY_PASS }}
+
+      - name: Get Version
+        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
+        id: get-version
+        run: |
+          version=$(cat gradle.properties | grep -o "version=[0-9\\.]*" | cut -d"=" -f2)
+          echo "VERSION=${version}" >> $GITHUB_OUTPUT
 
       - name: Get Release Metadata
         if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
