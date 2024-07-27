@@ -12,7 +12,7 @@ indra {
   mitLicense()
 
   javaVersions {
-    target(8)
+    target(17)
   }
 
   configurePublications {
