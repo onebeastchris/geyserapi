@@ -1,12 +1,12 @@
 plugins {
-  `kotlin-dsl`
+    `kotlin-dsl`
 }
 
 repositories {
-  gradlePluginPortal()
+    gradlePluginPortal()
 }
 
 dependencies {
-  implementation(libs.plugin.indra)
-  implementation(libs.plugin.indra.git)
+    implementation(libs.plugin.indra)
+    implementation(libs.plugin.indra.git)
 }
